@@ -1,0 +1,14 @@
+<div class="container">
+    <button class="btn-filtrar" (click)="seeFilter()">
+        <span>Filtrar</span>
+    </button>
+
+    <ng-container *ngIf="filter">
+        <div class="container-buttons">
+            <button (click)="mostrarTodo()">Todos</button>
+            <div *ngFor="let informacion of information">
+                <button (click)="filterByCity(informacion.city)"> {{informacion.city}} </button>
+            </div>
+        </div>
+    </ng-container>
+</div>

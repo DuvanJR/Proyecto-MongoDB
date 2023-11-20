@@ -1,0 +1,186 @@
+.btn-back {
+  margin-left: 7px;
+}
+
+.main-details {
+  display: flex;
+  margin: 35px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 30px;
+}
+
+.container-title {
+  color: white;
+  font-size: 34px;
+  font-weight: 500;
+  height: 45px;
+}
+
+.container-img {
+  width: 550px;
+}
+
+.img {
+  width: 100%;
+}
+
+.card-description {
+  display: flex;
+  color: white;
+  font-size: 16px;
+  font-weight: 300;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.text-description {
+  font-size: 18px;
+  font-weight: 200;
+  letter-spacing: 0.3px;
+}
+
+.container-comments {
+  display: flex;
+  border-radius: 10px;
+  border: 2px solid #5858587e;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.card-comment {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+}
+
+.example-full-width {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-text-comment {
+  font-size: 16px;
+  border-radius: 10px;
+  background-color: rgba(182, 182, 182, 0.07);
+  margin-left: 8px;
+}
+
+.btn-comment {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.number-textarea {
+  font-size: 14px;
+  color: white;
+}
+
+.comments {
+  display: flex;
+}
+
+.material-symbols-outlined {
+  color: white;
+  font-size: 45px;
+  cursor: pointer;
+}
+
+.material-symbols-outlined:hover {
+  color: red;
+  font-size: 45px;
+  cursor: pointer;
+}
+
+.list-comment {
+  display: flex;
+  border-radius: 15px;
+  border: 2px solid rgba(182, 182, 182, 0.07);
+}
+
+.description-country {
+  display: flex;
+  gap: 10px;
+}
+
+.caja-comentarios {
+  font-size: 16px;
+  margin-right: 100px;
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.title-comments {
+  color: white;
+  font-size: 25px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comment {
+  overflow: hidden;
+  padding: 0 0 1em;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 1em;
+  *zoom: 1;
+}
+
+.comment-img {
+  float: left;
+  margin-right: 33px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.comment-img img {
+  display: block;
+}
+
+.comment-body {
+  display: flex;
+    margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.comment .text {
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.comment .text p:last-child {
+  margin: 0;
+}
+
+.comment .attribution {
+  margin: 0.5em 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Decoration */
+
+.comments,
+.comment {
+  position: relative;
+}
+
+
+
+
+

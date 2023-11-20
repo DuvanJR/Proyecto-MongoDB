@@ -1,0 +1,67 @@
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #33474c ;
+}
+
+.mat-mdc-form-field-infix {
+  flex: auto;
+  min-width: 0;
+  width: auto !important;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.mat-mdc-card-content {
+  display: flex;
+  padding: 25px 18px !important;
+}
+
+//color del boton
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: #466067 !important;
+  --mdc-protected-button-label-text-color: #fff;
+}
+
+//Linea de los campos input
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__trailing {
+  border-color: rgba(243, 243, 243, 0.232) !important;
+}
+
+mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: rgb(229, 226, 226) !important;
+}
+
+.mdc-text-field .mdc-text-field__input {
+  color: rgb(229, 226, 226) !important;
+}
+
+.mdc-text-field .mdc-text-field__input {
+  caret-color: #ffffffd5 !important;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: rgba(243, 243, 243, 0.435) !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: rgba(153, 169, 173, 0.053);;
+}
+
+
+mat-toolbar[_ngcontent-gho-c98] {
+  color: #040404;
+  font-weight: 600 !important;
+}
+
+

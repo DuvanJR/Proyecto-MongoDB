@@ -1,0 +1,66 @@
+.example-card {
+  display: flex;
+  max-width: 400px;
+  margin: 10% auto;
+  color: #f1efef;
+  border-radius: 15px;
+  background: rgba(153, 169, 173, 0.13);
+}
+
+.color{
+  background: rgba(153, 169, 173, 0.13);
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: 900;
+  margin-top: -15px;
+  margin-bottom: 50px;
+}
+
+.campo-user {
+  margin: 0 40px;
+}
+
+.mat-form-field-user {
+  width: 85%;
+}
+
+.mat-label-user {
+  font-size: 15px;
+}
+
+.mat-label-password {
+  font-size: 15px;
+}
+
+input {
+  font-size: 14px;
+}
+
+.mat-mdc-form-field-error {
+  display: flex;
+  margin-left: -14px;
+  margin-top: -4px;
+  font-size: 10px;
+}
+
+.btn {
+  margin: 15px 0 0 0;
+  width: 100%;
+}
+
+.radio{
+  border-radius: 10px;
+}
+
+.name-btn {
+  font-size: 20px;
+}

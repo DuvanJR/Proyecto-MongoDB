@@ -1,0 +1,51 @@
+
+.btn-filtrar {
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #4e606f;
+    color: white;
+  }
+  
+  .btn-filtrar:hover {
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #abacad91;
+    border: 1px solid #ccc;
+    color: black;
+  }
+
+
+.container{
+    display: flex;
+    gap: 30px;
+}
+
+.container-buttons{
+    display: flex;
+    gap: 20px;  
+}
+
+button{
+    color: white;
+    background-color: rgba(131, 131, 131, 0.331);
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+button:hover{
+    color: white;
+    background-color: #abacad91;
+    color: black;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 1px solid #8e8e8e;
+}

@@ -1,0 +1,18 @@
+.container-main {
+  width: 100%;
+  height: calc(100% - 88px);
+  overflow-y: scroll;
+  padding: 40px;
+}
+
+.container-main::-webkit-scrollbar {
+  width: 9px;
+  border-radius: 5px;
+  background-color: rgb(210, 210, 210);
+}
+
+.container-main::-webkit-scrollbar-thumb {
+  width: 10px;
+  border-radius: 10px;
+  background-color: rgba(103, 103, 103, 0.686);
+}

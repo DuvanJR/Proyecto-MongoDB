@@ -1,0 +1,79 @@
+<div class="btn-back">
+  <span class="material-symbols-outlined" (click)="back()"> cancel </span>
+</div>
+
+<div class="main-details" *ngFor="let item of dataReciber">
+  <div class="card-container">
+    <div class="container-title">
+      <p>{{item.name | uppercase }}</p>
+    </div>
+    <div class="container-img">
+      <img
+        [src]="item.img"
+        alt
+        class="img"
+      />
+    </div>
+  </div>
+
+  <div class="card-description">
+    <span class="text-description"
+      >{{item.description}}
+    </span>
+    <div class="description-country">
+      <strong><span>CIUDAD: </span></strong>
+      <p>{{item.city}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-comments main-details">
+  <div class="card-comment">
+    <mat-form-field class="example-full-width">
+      <mat-label>Escriba un comentario...</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="comentarioTemporal"
+        #message
+        maxlength="60"
+      ></textarea>
+      <mat-hint align="end" class="number-textarea"
+        >{{ message.value.length }}/60</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-card-actions class="btn-comment">
+      <button mat-button class="btn-text-comment" (click)="agregarComentario()">
+        <span class="texto">COMENTAR</span>
+      </button>
+    </mat-card-actions>
+  </div>
+  <h1 class="title-comments">COMENTARIOS</h1>
+  <section class="comments">
+    <article class="comment">
+
+      <div class="comment-body"  *ngFor="let dataComments of dataComments">
+        <div class="text">
+          <p> {{ dataComments.comentario }}</p>
+        </div>
+        <p class="attribution"> {{dataComments.fecha}}</p>
+        <button mat-icon-button (click)="cambiarEstadoLike()">
+          <mat-icon *ngIf="like; else dislikeIcon">thumb_up</mat-icon>
+          <ng-template #dislikeIcon><mat-icon>thumb_down</mat-icon></ng-template>
+        </button>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- <div class="caja-comentarios" >
+    <h1 class="title-comments">COMENTARIOS</h1>
+    <div class="comments" *ngFor="let dataComments of dataComments">
+      <mat-list class="list-comment">
+        <mat-list-item>
+          {{ dataComments.comentario }}
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div> -->
+</div>

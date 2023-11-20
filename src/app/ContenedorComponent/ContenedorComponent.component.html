@@ -1,0 +1,29 @@
+<div class="btn-nav">
+  <app-filter (todosCiudad)="getAllCity()" (result)="filtrar($event)" />
+  <!-- <app-seeker class="btn-seeker"/> -->
+</div>
+
+
+<div class="main">
+  <mat-card class="example-card color" *ngFor="let item of information">
+    <mat-card-header>
+      <mat-card-title>
+        <span class="title">{{item.name}}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <div class="example-header-image">
+      <img mat-card-image [src]="item.img" alt="{{item.name}}" width="370"
+      height="230" >
+    </div>
+    <mat-card-content class="container-text">
+
+      <p class="contenido">
+       <strong>CIUDAD:</strong> {{item.city}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="openDialog(item.name)" class="comment">Ver más</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
