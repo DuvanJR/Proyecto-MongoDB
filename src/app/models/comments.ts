@@ -1,7 +1,8 @@
 export interface CommentsModel{
   like: boolean,
-  dislike: boolean,
+  usuario: string,
   fecha:string,
   comentario: string,
-  universityName:string
+  universityName:string,
+  idUniversity: number
 }

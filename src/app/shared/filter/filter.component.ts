@@ -9,7 +9,7 @@ import { UniversityServiceService } from 'src/app/service/university-service.ser
 })
 export class FilterComponent implements OnInit {
   public information: any[] = [];
-  public city!: any;
+  public city: string[] = [];
   constructor(private universityService: UniversityServiceService) {}
   filter: boolean = false;
   @Output() result = new EventEmitter();
@@ -22,9 +22,15 @@ export class FilterComponent implements OnInit {
   getUniversity(): void {
     this.universityService.getUniversity().subscribe((res: University[]) => {
       this.information = res;
+      console.log(res);
       res.forEach((res) => {
-        this.city = res.city;
+        this.city.push(res.city)
       });
+      let misCiudades: string[] = this.city;
+      let ciudadesSinDuplicados: string[] = [...new Set(misCiudades)];
+
+      this.city = ciudadesSinDuplicados;
+      
     });
   }
 

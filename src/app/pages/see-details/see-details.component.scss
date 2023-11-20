@@ -1,16 +1,31 @@
 .btn-back {
-  margin-left: 7px;
+  display: flex;
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 15px 0 0;
 }
 
+.container-main{
+  border-radius: 20px;
+  background-color: #637381;
+  height: max-content;
+
+}
+
+::ng-deep .custom-modalConsul .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: unset;
+  box-shadow: none;
+  height: 800px;
+  overflow-y: scroll;
+}
+
+
 .main-details {
-  display: flex;
   margin: 35px;
 }
 
 .card-container {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   gap: 10px;
   padding: 30px;
 }
@@ -23,7 +38,7 @@
 }
 
 .container-img {
-  width: 550px;
+  width: 850px;
 }
 
 .img {
@@ -152,7 +167,7 @@
 
 .comment-body {
   display: flex;
-    margin-bottom: 30px;
+  margin-bottom: 30px;
   overflow: hidden;
 }
 
@@ -173,7 +188,7 @@
   color: #666;
 }
 
-.letra{
+.letra {
   color: red;
 }
 /* Decoration */
@@ -182,8 +197,3 @@
 .comment {
   position: relative;
 }
-
-
-
-
-
