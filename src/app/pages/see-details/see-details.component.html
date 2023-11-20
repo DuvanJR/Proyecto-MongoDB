@@ -55,8 +55,9 @@
       <div class="comment-body"  *ngFor="let dataComments of dataComments">
         <div class="text">
           <p> {{ dataComments.comentario }}</p>
+          <p class="attribution letra"> {{dataComments.fecha}}</p>
         </div>
-        <p class="attribution"> {{dataComments.fecha}}</p>
+        
         <button mat-icon-button (click)="cambiarEstadoLike()">
           <mat-icon *ngIf="like; else dislikeIcon">thumb_up</mat-icon>
           <ng-template #dislikeIcon><mat-icon>thumb_down</mat-icon></ng-template>

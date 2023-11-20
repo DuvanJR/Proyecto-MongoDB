@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UniversityServiceService } from '../service/university-service.service';
-import { University } from './models/university';
+import { University } from '../models/university';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { SeeDetailsComponent } from '../pages/see-details/see-details.component';
 @Component({
@@ -11,6 +11,7 @@ import { SeeDetailsComponent } from '../pages/see-details/see-details.component'
 })
 export class ContenedorComponentComponent implements OnInit {
   public information: any[] = [];
+  public copyInformation: any[] = [];
   public city: any;
   @Output() datosFiltrados = new EventEmitter<any[]>();
   constructor(private router: Router,
@@ -27,22 +28,32 @@ export class ContenedorComponentComponent implements OnInit {
 
   filtrar(city: string) {
     this.city = city
+    this.information = this.copyInformation
     const result = this.information.filter((universidades) =>
       universidades.city.includes(city));
-    this.city = result;
+    this.information = result;
+    console.log('esta es la ciudad', result);
   }
+
+
   getUniversity(): void {
     this.universityService.getUniversity().subscribe((res: University[]) => {
       this.information = res;
+      this.copyInformation = res;
       console.log(res)
       res.forEach(res => {
         this.city = res.city;
       });
     })
   }
-  getAllCity() {
+
+
+ /**
+  * getAllCity() {
     this.city
   }
+  */
+  
 
   see(name: string) {
     const universityByName = this.information.filter(item => item.name === name);

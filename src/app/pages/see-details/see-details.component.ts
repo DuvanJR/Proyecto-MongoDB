@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { University } from 'src/app/ContenedorComponent/models/university';
+import { University } from 'src/app/models/university';
 import { UniversityServiceService } from 'src/app/service/university-service.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { CommentsModel } from 'src/app/ContenedorComponent/models/comments';
+import { CommentsModel } from 'src/app/models/comments';
 @Component({
   selector: 'app-see-details',
   templateUrl: './see-details.component.html',
