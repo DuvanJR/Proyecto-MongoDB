@@ -24,9 +24,9 @@ export class SeeDetailsComponent implements OnInit {
   public like: boolean = true;
   public user!: string;
   public idUniversity!: number;
-  public filterIdUniversity:any;
-  public messageModal :string = 'Creado exitosamente'
-  public buttonModal:string = 'Undo';
+  public filterIdUniversity: any;
+  public messageModal: string = 'Creado exitosamente';
+  public buttonModal: string = 'Undo';
   constructor(
     private router: Router,
     private universityService: UniversityServiceService,
@@ -41,10 +41,10 @@ export class SeeDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.dataReciber = this.data;
-    const {idUniversity,name}  = this.data[0];
+    const { idUniversity, name } = this.data[0];
     this.filterIdUniversity = idUniversity;
     this.universityNames = name;
-    console.log(idUniversity,'aaaaaaaaaaaaasssssssss')
+    console.log(idUniversity, 'aaaaaaaaaaaaasssssssss');
     console.log(this.data, 'modals');
     this.getCommentsUniversity();
     this.formComments = this.fb.group({
@@ -60,13 +60,15 @@ export class SeeDetailsComponent implements OnInit {
   listaComentarios: { numero: number; comentario: string }[] = [];
   contadorComentarios: number = 0; // Inicializa el contador en 0
   getUniversity(): void {
-    this.universityService.getUniversity().subscribe((res: UniversityModel[]) => {
-      this.information = res;
-    });
+    this.universityService
+      .getUniversity()
+      .subscribe((res: UniversityModel[]) => {
+        this.information = res;
+      });
   }
 
-  cambiarEstadoLike() {  
-    this.like = !this.like; 
+  cambiarEstadoLike() {
+    this.like = !this.like;
     this.formComments.patchValue({
       usuario: this.formComments.get('usuario')?.value,
       like: this.like,
@@ -77,15 +79,12 @@ export class SeeDetailsComponent implements OnInit {
       // Puedes agregar más campos según tus necesidades
     });
     this.universityService
-        .postComments(this.formComments.value)
-        .subscribe((res) => {
-          console.log(res);
-          
-        });
-       
-    
+      .postComments(this.formComments.value)
+      .subscribe((res) => {
+        console.log(res,'estadolike');
+      });
   }
-  
+
   onSubmit() {
     if (this.formComments.valid) {
       this.formComments.patchValue({
@@ -93,22 +92,23 @@ export class SeeDetailsComponent implements OnInit {
         like: this.like,
         fecha: Date.now(),
         universityName: this.universityNames,
-        idUniversity: this.idUniversity,
+        idUniversity: this.filterIdUniversity,
         comentario: this.formComments.get('comentario')?.value,
-        // Puedes agregar más campos según tus necesidades
       });
       const formData = this.formComments.value;
       console.log('Datos enviados:', formData);
       this.universityService
         .postComments(this.formComments.value)
         .subscribe((res) => {
-          console.log(res);
-          if (res.status === 201) {
-            this.resetForm();
+          console.log(res,'hola');
+          this.formComments.reset();
+          this.getCommentsUniversity();
+          if (res.status === 200) {
+            /*this.resetForm();*/
             this.showSnackBar('Comentario creado exitosamente');
+            
           }
         });
-       
     }
   }
   showSnackBar(message: string) {
@@ -120,25 +120,26 @@ export class SeeDetailsComponent implements OnInit {
     this.formComments.reset();
   }
   getCommentsUniversity(): void {
-    this.universityService.getcomments(this.filterIdUniversity).subscribe((res: CommentsModel[]) => {
-      this.datosRecibidos = res;
-      console.log(res,'esto que tira');
-      res.forEach((res) => {
-        this.universityNames = res.universityName;
-        (this.like = res.like),
-          (this.user = res.usuario),
-          (this.idUniversity = res.idUniversity);
-      });
+    this.universityService
+      .getcomments(this.filterIdUniversity)
+      .subscribe((res: CommentsModel[]) => {
+        this.datosRecibidos = res;
+        console.log(res, 'esto que tira');
+        res.forEach((res) => {
+          this.universityNames = res.universityName;
+          (this.like = res.like),
+            (this.user = res.usuario),
+            (this.idUniversity = res.idUniversity);
+        });
 
-      console.log(res, 'datos');
-      this.dataComments = res;
-    });
+        console.log(res, 'datos');
+        this.dataComments = res;
+      });
   }
   recibirDatos(datos: any[]) {
     this.datosRecibidos = datos;
   }
 
-  
   agregarComentario() {
     this.contadorComentarios++;
     this.listaComentarios.push({
