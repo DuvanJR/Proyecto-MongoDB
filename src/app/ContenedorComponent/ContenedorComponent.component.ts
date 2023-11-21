@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UniversityServiceService } from '../service/university-service.service';
-import { University } from '../models/university';
+import { UniversityModel } from '../models/university';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -38,7 +38,7 @@ export class ContenedorComponentComponent implements OnInit {
   }
 
   getUniversity(): void {
-    this.universityService.getUniversity().subscribe((res: University[]) => {
+    this.universityService.getUniversity().subscribe((res: UniversityModel[]) => {
       this.information = res;
       this.copyInformation = res;
       console.log(res);

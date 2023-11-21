@@ -16,8 +16,8 @@ export class UniversityServiceService {
     const url = `${this.apiLocal}/universities`;
     return this.http.get(url);
   }
-  getcomments():Observable<any>{
-    const url = `${this.apiLocal}/comments`;
+  getcomments(id:number):Observable<any>{
+    const url = `${this.apiLocal}/comments/${id}`;
     return this.http.get(url);
   }
   postComments(formData:any):Observable<any>{

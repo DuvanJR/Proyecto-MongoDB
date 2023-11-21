@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { University } from 'src/app/models/university';
+import { UniversityModel } from 'src/app/models/university';
 import { UniversityServiceService } from 'src/app/service/university-service.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class FilterComponent implements OnInit {
   }
 
   getUniversity(): void {
-    this.universityService.getUniversity().subscribe((res: University[]) => {
+    this.universityService.getUniversity().subscribe((res: UniversityModel[]) => {
       this.information = res;
       console.log(res);
       res.forEach((res) => {

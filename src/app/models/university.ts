@@ -1,4 +1,4 @@
-export interface University{
+export interface UniversityModel{
   name: string,
   description: string,
   img: string,

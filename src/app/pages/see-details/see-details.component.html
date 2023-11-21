@@ -26,21 +26,29 @@
     <div class="card-comment">
       <form [formGroup]="formComments" (ngSubmit)="onSubmit()">
         <!-- Controles del formulario -->
-        <label for="usuario">Comentario:</label>
-        <input  matInput  type="text" id="usuario" formControlName="usuario">
-        <div >
-          El comentario es obligatorio.
-        </div>
-        <label for="comentario">Comentario:</label>
-        <input  matInput  type="text" id="comentario" formControlName="comentario">
-        <div *ngIf="formComments.get('comentario')?.hasError('required') && formComments.get('comentario')?.touched">
-          El comentario es obligatorio.
-        </div>
+
+        <mat-form-field appearance="fill" class="fillInput">
+          <mat-label >Usuario</mat-label>
+          <input formControlName="usuario" matInput placeholder="Escriba un usuario..." value="usuario">
+          <div *ngIf="formComments.get('usuario')?.hasError('required') && formComments.get('usuario')?.touched">
+            El comentario es obligatorio.
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="fillInput">
+          <mat-label > Comentario</mat-label>
+          <textarea formControlName="comentario" matInput placeholder="Escriba un comentario..." value="comentario"></textarea>
+          <div *ngIf="formComments.get('comentario')?.hasError('required') && formComments.get('comentario')?.touched">
+            El comentario es obligatorio.
+          </div>
+        </mat-form-field>
+       
+        
       
-        <!-- ... otros controles -->
       
         <!-- Botón de envío -->
-        <button type="submit">Enviar</button>
+        <button  type="submit" mat-flat-button color="accent">Enviar</button>
+        
       </form>
     
       
@@ -52,8 +60,9 @@
       <article class="comment">
         <div class="comment-body" *ngFor="let dataComments of dataComments">
           <div class="text">
+            <p class="usuarioData">{{dataComments.usuario}}</p>
             <p>{{ dataComments.comentario }}</p>
-            <p class="attribution letra">{{ dataComments.fecha }}</p>
+            <p class="attribution letra">{{ dataComments.fecha |date: 'shortDate' }}</p>
           </div>
 
           <button mat-icon-button (click)="cambiarEstadoLike()">
