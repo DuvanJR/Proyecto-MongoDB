@@ -17,6 +17,7 @@ export class ContenedorComponentComponent implements OnInit {
   public information: any[] = [];
   public copyInformation: any[] = [];
   public city: string[] = [];
+  public visits!: number;
   @Output() datosFiltrados = new EventEmitter<any[]>();
   constructor(
     private router: Router,
@@ -44,7 +45,7 @@ export class ContenedorComponentComponent implements OnInit {
       console.log(res);
       res.forEach((res) => {
         this.city.push(res.city)
-        console.log(res.city)
+        console.log(res.city,'necesitamos un 5 xD')
       });
       let misCiudades: string[] = this.city;
       let ciudadesSinDuplicados: string[] = [...new Set(misCiudades)];
@@ -54,11 +55,26 @@ export class ContenedorComponentComponent implements OnInit {
     });
   }
 
-  /**
-  * getAllCity() {
-    this.city
+  getVisits(idUniversity: number): void {
+    // Llamada al servicio para obtener el total de visitas
+    this.universityService.getVisitsById(idUniversity).subscribe(
+      (data) => {
+        // Encuentra la universidad correspondiente en la lista
+        const universityToUpdate = this.information.find(u => u.idUniversity === idUniversity);
+
+        if (universityToUpdate) {
+          // Actualiza directamente la propiedad visits
+          universityToUpdate.visits = data.visits;
+        }
+
+        // Muestra el total de visitas en la consola 
+        console.log(`Visitas para ${idUniversity}: ${data.visits}`);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
-  */
 
   see(name: string) {
     const universityByName = this.information.filter(

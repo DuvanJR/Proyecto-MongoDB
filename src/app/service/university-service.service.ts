@@ -16,10 +16,17 @@ export class UniversityServiceService {
     const url = `${this.apiLocal}/universities`;
     return this.http.get(url);
   }
+
+  getVisitsById(idUniversity: number): Observable<any> {
+    const url = `${this.apiLocal}/universities/${idUniversity}/visits`;
+    return this.http.get(url);
+  }
+
   getcomments(id:number):Observable<any>{
     const url = `${this.apiLocal}/comments/${id}`;
     return this.http.get(url);
   }
+  
   postComments(formData:any):Observable<any>{
     const url = `${this.apiLocal}/comments`;
     return this.http.post(url,formData);

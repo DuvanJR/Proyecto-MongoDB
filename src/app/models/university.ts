@@ -3,5 +3,6 @@ export interface UniversityModel{
   description: string,
   img: string,
   city: string,
-  idUniversity:number
+  idUniversity: number,
+  visits: number
 }

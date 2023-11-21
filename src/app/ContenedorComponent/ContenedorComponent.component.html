@@ -20,9 +20,12 @@
       <p class="contenido">
        <strong>CIUDAD:</strong> {{item.city}}
       </p>
+      <p class="contenido">
+        <strong>VISITAS:</strong> {{item.visits}}
+       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="openDialog(item.name)" class="comment">Ver más</button>
+      <button mat-button (click)="openDialog(item.name)" (click)="getVisits(item.idUniversity)" class="comment">Ver más</button>
     </mat-card-actions>
   </mat-card>
 
