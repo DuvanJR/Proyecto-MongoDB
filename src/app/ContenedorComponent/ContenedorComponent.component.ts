@@ -57,8 +57,8 @@ export class ContenedorComponentComponent implements OnInit {
 
   getVisits(idUniversity: number): void {
     // Llamada al servicio para obtener el total de visitas
-    this.universityService.getVisitsById(idUniversity).subscribe(
-      (data) => {
+    this.universityService.getVisitsById(idUniversity).subscribe({
+      next:(data) => {
         // Encuentra la universidad correspondiente en la lista
         const universityToUpdate = this.information.find(u => u.idUniversity === idUniversity);
 
@@ -70,9 +70,10 @@ export class ContenedorComponentComponent implements OnInit {
         // Muestra el total de visitas en la consola 
         console.log(`Visitas para ${idUniversity}: ${data.visits}`);
       },
-      (error) => {
+      error:(error) => {
         console.error(error);
       }
+    }
     );
   }
 

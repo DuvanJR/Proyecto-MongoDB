@@ -5,7 +5,7 @@
   padding: 15px 15px 0 0;
 }
 
-.container-main{
+.container-main {
   border-radius: 20px;
   background-color: #637381;
   height: max-content;
@@ -23,13 +23,19 @@
   background-color: rgba(103, 103, 103, 0.686);
 }
 
-::ng-deep .custom-modalConsul .mat-mdc-dialog-container .mdc-dialog__surface::-webkit-scrollbar-thumb {
+::ng-deep
+  .custom-modalConsul
+  .mat-mdc-dialog-container
+  .mdc-dialog__surface::-webkit-scrollbar-thumb {
   width: 10px;
   border-radius: 10px;
   background-color: rgba(103, 103, 103, 0.686);
 }
 
-::ng-deep .custom-modalConsul .mat-mdc-dialog-container .mdc-dialog__surface::-webkit-scrollbar {
+::ng-deep
+  .custom-modalConsul
+  .mat-mdc-dialog-container
+  .mdc-dialog__surface::-webkit-scrollbar {
   width: 9px;
   border-radius: 5px;
   background-color: rgb(210, 210, 210);
@@ -41,7 +47,6 @@
   height: 800px;
   overflow-y: scroll;
 }
-
 
 .main-details {
   margin: 35px;
@@ -100,7 +105,7 @@
   flex-direction: column;
   width: 100%;
 }
-.fillInput{
+.fillInput {
   width: 100%;
 }
 .example-full-width {
@@ -126,7 +131,7 @@
   font-size: 14px;
   color: white;
 }
-.usuarioData{
+.usuarioData {
   font-weight: bold;
   color: green;
 }
@@ -209,6 +214,9 @@
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .comment .text p:last-child {

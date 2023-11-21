@@ -21,56 +21,68 @@
     </div>
   </div>
 
-
   <div class="container-comments main-details">
     <div class="card-comment">
       <form [formGroup]="formComments" (ngSubmit)="onSubmit()">
         <!-- Controles del formulario -->
 
         <mat-form-field appearance="fill" class="fillInput">
-          <mat-label >Usuario</mat-label>
-          <input formControlName="usuario" matInput placeholder="Escriba un usuario..." value="usuario">
-          <div *ngIf="formComments.get('usuario')?.hasError('required') && formComments.get('usuario')?.touched">
-            El comentario es obligatorio.
+          <mat-label>Usuario</mat-label>
+          <input
+            formControlName="usuario"
+            matInput
+            placeholder="Escriba un usuario..."
+            value="usuario"
+          />
+          <div
+            *ngIf="
+              formComments.get('usuario')?.hasError('required') &&
+              formComments.get('usuario')?.touched
+            "
+          >
+            <p style="color: rgb(255, 255, 255)">
+              El comentario es obligatorio.
+            </p>
           </div>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="fillInput">
-          <mat-label > Comentario</mat-label>
-          <textarea formControlName="comentario" matInput placeholder="Escriba un comentario..." value="comentario"></textarea>
-          <div *ngIf="formComments.get('comentario')?.hasError('required') && formComments.get('comentario')?.touched">
-            El comentario es obligatorio.
+          <mat-label> Comentario</mat-label>
+          <textarea
+            formControlName="comentario"
+            matInput
+            placeholder="Escriba un comentario..."
+            value="comentario"
+          ></textarea>
+          <div
+            *ngIf="
+              formComments.get('comentario')?.hasError('required') &&
+              formComments.get('comentario')?.touched
+            "
+          >
+            <p style="color: rgb(255, 255, 255)">
+              El comentario es obligatorio.
+            </p>
           </div>
         </mat-form-field>
-       
-        
-      
-      
-        <!-- Botón de envío -->
-        <button  type="submit" mat-flat-button color="accent">Enviar</button>
-        
-      </form>
-    
-      
 
-      
+        <!-- Botón de envío -->
+        <button type="submit" mat-flat-button color="accent">Enviar</button>
+      </form>
     </div>
     <h1 class="title-comments">COMENTARIOS</h1>
     <section class="comments">
       <article class="comment">
         <div class="comment-body" *ngFor="let dataComments of dataComments">
           <div class="text">
-            <p class="usuarioData">{{dataComments.usuario}}</p>
-            <p>{{ dataComments.comentario }}</p>
-            <p class="attribution letra">{{ dataComments.fecha |date: 'shortDate' }}</p>
+            <p class="usuarioData">Usuario: {{ dataComments.usuario }}</p>
+            <p>Comentario: {{ dataComments.comentario }}</p>
+            <p class="attribution letra">
+              Fecha: {{ dataComments.fecha | date : "shortDate" }}
+            </p>
           </div>
 
-          <button mat-icon-button (click)="cambiarEstadoLike()">
-            <mat-icon *ngIf="like; else dislikeIcon">thumb_up</mat-icon>
-            <ng-template #dislikeIcon
-              ><mat-icon>thumb_down</mat-icon></ng-template
-            >
-          </button>
+          <app-likes/>
         </div>
       </article>
     </section>

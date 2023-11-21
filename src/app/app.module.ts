@@ -13,6 +13,7 @@ import { SeeDetailsComponent } from './pages/see-details/see-details.component';
 import { FilterComponent } from './shared/filter/filter.component';
 import { SeekerComponent } from './shared/seeker/seeker.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LikesComponent } from './shared/likes/likes.component';
 
 
 
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     SeeDetailsComponent,
     FilterComponent,
     SeekerComponent,
-
+    LikesComponent
 
    ],
   imports: [

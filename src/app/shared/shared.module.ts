@@ -13,9 +13,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LikesComponent } from './likes/likes.component';
 
 @NgModule({
   declarations: [
+  
+    
   ],
   exports: [
     CommonModule,
