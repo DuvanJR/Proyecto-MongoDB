@@ -6,6 +6,7 @@
   font-weight: 900;
   color: #ffffffd5;
   margin-left: -66px;
+  gap: 10px;
 }
 
 .color {
@@ -33,8 +34,8 @@
   font-size: 45px;
 }
 
-.material-symbols-outlined{
-    cursor: pointer;
+.material-symbols-outlined {
+  cursor: pointer;
 }
 
 .container-user-name {
@@ -57,3 +58,15 @@
   margin-left: 10px;
 }
 
+.material-symbols-outlined {
+  display: flex;
+  align-items: center;
+}
+
+.icon-group{
+  font-size: 33px;
+}
+
+.icon-db{
+  font-size: 32px;
+}

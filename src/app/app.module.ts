@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyLoginComponent } from 'src/app/pages/home/my-login/my-login.component';
 import { MyToolbarComponent } from 'src/app/pages/home/toolbar/my-toolbar.component';
 import { SharedModule } from './shared/shared.module';
 import { ContenedorComponentComponent } from './ContenedorComponent/ContenedorComponent.component';
@@ -18,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    MyLoginComponent,
     MyToolbarComponent,
     ContenedorComponentComponent,
     HomeComponent,

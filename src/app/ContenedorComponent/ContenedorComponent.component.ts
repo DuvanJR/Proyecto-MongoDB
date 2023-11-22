@@ -39,42 +39,43 @@ export class ContenedorComponentComponent implements OnInit {
   }
 
   getUniversity(): void {
-    this.universityService.getUniversity().subscribe((res: UniversityModel[]) => {
-      this.information = res;
-      this.copyInformation = res;
-      console.log(res);
-      res.forEach((res) => {
-        this.city.push(res.city)
-        console.log(res.city,'necesitamos un 5 xD')
+    this.universityService
+      .getUniversity()
+      .subscribe((res: UniversityModel[]) => {
+        this.information = res;
+        this.copyInformation = res;
+        console.log(res);
+        res.forEach((res) => {
+          this.city.push(res.city);
+        });
+        let misCiudades: string[] = this.city;
+        let ciudadesSinDuplicados: string[] = [...new Set(misCiudades)];
+        this.city = ciudadesSinDuplicados;
+        console.log('ciudades', ciudadesSinDuplicados);
       });
-      let misCiudades: string[] = this.city;
-      let ciudadesSinDuplicados: string[] = [...new Set(misCiudades)];
-
-      this.city = ciudadesSinDuplicados;
-      console.log('ciudades',ciudadesSinDuplicados)
-    });
   }
 
   getVisits(idUniversity: number): void {
     // Llamada al servicio para obtener el total de visitas
     this.universityService.getVisitsById(idUniversity).subscribe({
-      next:(data) => {
+      next: (data) => {
         // Encuentra la universidad correspondiente en la lista
-        const universityToUpdate = this.information.find(u => u.idUniversity === idUniversity);
+        const universityToUpdate = this.information.find(
+          (u) => u.idUniversity === idUniversity
+        );
 
         if (universityToUpdate) {
           // Actualiza directamente la propiedad visits
           universityToUpdate.visits = data.visits;
         }
 
-        // Muestra el total de visitas en la consola 
+        // Muestra el total de visitas en la consola
         console.log(`Visitas para ${idUniversity}: ${data.visits}`);
       },
-      error:(error) => {
+      error: (error) => {
         console.error(error);
-      }
-    }
-    );
+      },
+    });
   }
 
   see(name: string) {

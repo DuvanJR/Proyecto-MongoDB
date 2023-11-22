@@ -37,11 +37,14 @@ export class SeeDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private snackbarService: SnackbarService
   ) {}
-  
+
+
 
   back() {
     this.dialogRef.close();
   }
+
+
   ngOnInit(): void {
     this.dataReciber = this.data;
     const { idUniversity, name } = this.data[0];
@@ -59,9 +62,7 @@ export class SeeDetailsComponent implements OnInit {
       comentario: ['', Validators.required],
     });
   }
-  comentarioTemporal: string = '';
-  listaComentarios: { numero: number; comentario: string }[] = [];
-  contadorComentarios: number = 0; // Inicializa el contador en 0
+  
   getUniversity(): void {
     this.universityService
       .getUniversity()
@@ -73,18 +74,23 @@ export class SeeDetailsComponent implements OnInit {
     const newLikeStatus = !comment.like;
     this.universityService.darLike(comment.usuario, newLikeStatus).subscribe(
       (data) => {
-        console.log(`Estado de like actualizado para ${comment.usuario}:`, data);
+        console.log(
+          `Estado de like actualizado para ${comment.usuario}:`,
+          data
+        );
         // Actualiza el estado de like en el comentario
         comment.like = newLikeStatus;
         this.snackbarService.openSnackBar('Like actualizado', 'Cerrar');
       },
       (error) => {
-        console.error(`Error al actualizar el estado de like para ${comment.usuario}:`, error);
+        console.error(
+          `Error al actualizar el estado de like para ${comment.usuario}:`,
+          error
+        );
         this.snackbarService.openSnackBar('Error al actualizar like', 'Cerrar');
       }
     );
   }
-  
 
   onSubmit() {
     if (this.formComments.valid) {
@@ -101,17 +107,18 @@ export class SeeDetailsComponent implements OnInit {
       this.universityService
         .postComments(this.formComments.value)
         .subscribe((res) => {
-          console.log(res,'hola');
+          console.log(res, 'hola');
           this.formComments.reset();
           this.getCommentsUniversity();
           this.snackbarService.openSnackBar('Comentario creado', 'Cerrar');
         });
     }
   }
-  
+
   resetForm() {
     this.formComments.reset();
   }
+
   getCommentsUniversity(): void {
     this.universityService
       .getcomments(this.filterIdUniversity)
@@ -124,24 +131,14 @@ export class SeeDetailsComponent implements OnInit {
             (this.user = res.usuario),
             (this.idUniversity = res.idUniversity);
         });
-
         console.log(res, 'datos');
         this.dataComments = res;
       });
   }
-  
+
   recibirDatos(datos: any[]) {
     this.datosRecibidos = datos;
   }
 
-  agregarComentario() {
-    this.contadorComentarios++;
-    this.listaComentarios.push({
-      numero: this.contadorComentarios,
-      comentario: this.comentarioTemporal,
-    });
-    this.comentarioTemporal = '';
-
-    console.log(this.listaComentarios, this.comentarioTemporal);
-  }
+  
 }
