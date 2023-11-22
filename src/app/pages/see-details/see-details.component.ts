@@ -1,5 +1,5 @@
 import { UniversityModel } from './../../models/university';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UniversityServiceService } from 'src/app/service/university-service.service';
@@ -7,6 +7,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommentsModel } from 'src/app/models/comments';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from 'src/app/service/Snackbar.service';
 @Component({
   selector: 'app-see-details',
   templateUrl: './see-details.component.html',
@@ -20,6 +21,7 @@ export class SeeDetailsComponent implements OnInit {
   public datosRecibidos!: any[];
   public dataReciber!: any;
   public universityNames!: string;
+  public usuario!: string;
   public dataComments!: CommentsModel[];
   public like: boolean = true;
   public user!: string;
@@ -33,8 +35,9 @@ export class SeeDetailsComponent implements OnInit {
     public dialogRef: MatDialogRef<SeeDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UniversityModel[],
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private snackbarService: SnackbarService
   ) {}
+  
 
   back() {
     this.dialogRef.close();
@@ -66,24 +69,22 @@ export class SeeDetailsComponent implements OnInit {
         this.information = res;
       });
   }
-
-  cambiarEstadoLike() {
-    this.like = !this.like;
-    this.formComments.patchValue({
-      usuario: this.formComments.get('usuario')?.value,
-      like: this.like,
-      fecha: Date.now(),
-      universityName: this.universityNames,
-      idUniversity: this.idUniversity,
-      comentario: this.formComments.get('comentario')?.value,
-      // Puedes agregar más campos según tus necesidades
-    });
-    this.universityService
-      .postComments(this.formComments.value)
-      .subscribe((res) => {
-        console.log(res,'estadolike');
-      });
+  updateLikeStatus(comment: any): void {
+    const newLikeStatus = !comment.like;
+    this.universityService.darLike(comment.usuario, newLikeStatus).subscribe(
+      (data) => {
+        console.log(`Estado de like actualizado para ${comment.usuario}:`, data);
+        // Actualiza el estado de like en el comentario
+        comment.like = newLikeStatus;
+        this.snackbarService.openSnackBar('Like actualizado', 'Cerrar');
+      },
+      (error) => {
+        console.error(`Error al actualizar el estado de like para ${comment.usuario}:`, error);
+        this.snackbarService.openSnackBar('Error al actualizar like', 'Cerrar');
+      }
+    );
   }
+  
 
   onSubmit() {
     if (this.formComments.valid) {
@@ -103,19 +104,11 @@ export class SeeDetailsComponent implements OnInit {
           console.log(res,'hola');
           this.formComments.reset();
           this.getCommentsUniversity();
-          if (res.status === 200) {
-            /*this.resetForm();*/
-            this.showSnackBar('Comentario creado exitosamente');
-            
-          }
+          this.snackbarService.openSnackBar('Comentario creado', 'Cerrar');
         });
     }
   }
-  showSnackBar(message: string) {
-    this._snackBar.open(message, 'Cerrar', {
-      duration: 2000, // Duración en milisegundos
-    });
-  }
+  
   resetForm() {
     this.formComments.reset();
   }
@@ -136,6 +129,7 @@ export class SeeDetailsComponent implements OnInit {
         this.dataComments = res;
       });
   }
+  
   recibirDatos(datos: any[]) {
     this.datosRecibidos = datos;
   }

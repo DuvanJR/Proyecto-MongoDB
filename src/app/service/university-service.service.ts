@@ -30,4 +30,14 @@ export class UniversityServiceService {
     const url = `${this.apiLocal}/comments`;
     return this.http.post(url,formData);
   }
+
+  darLike(usuario: string,like:boolean): Observable<any> {
+    const url = `${this.apiLocal}/comments/${usuario}/${like}`;
+    return this.http.post(url, {});
+  }
+
+  darDislike(usuario: string): Observable<any> {
+    const url = `${this.apiLocal}/comments/${usuario}/dislike`;
+    return this.http.post(url, {});
+  }
 }

@@ -1,9 +1,9 @@
-<div class="container-main">
+<div class="container-main " >
   <div class="btn-back">
     <span class="material-symbols-outlined" (click)="back()"> cancel </span>
   </div>
 
-  <div class="main-details" *ngFor="let item of dataReciber">
+  <div class="main-details " *ngFor="let item of dataReciber">
     <div class="container-title">
       <p>{{ item.name | uppercase }}</p>
     </div>
@@ -81,8 +81,17 @@
               Fecha: {{ dataComments.fecha | date : "shortDate" }}
             </p>
           </div>
+ 
 
-          <app-likes/>
+          <div >
+            <button mat-icon-button (click)="updateLikeStatus(dataComments)"> 
+              <mat-icon *ngIf="dataComments.like; else dislikeIcon" class="estadoLike">thumb_up</mat-icon>
+              <ng-template #dislikeIcon>
+                <mat-icon class="estadoDislike">thumb_down</mat-icon>
+              </ng-template>
+            </button>
+          </div>
+          
         </div>
       </article>
     </section>
