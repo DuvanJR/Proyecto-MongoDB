@@ -38,20 +38,17 @@ export class SeeDetailsComponent implements OnInit {
     private snackbarService: SnackbarService
   ) {}
 
-
-
   back() {
     this.dialogRef.close();
   }
-
 
   ngOnInit(): void {
     this.dataReciber = this.data;
     const { idUniversity, name } = this.data[0];
     this.filterIdUniversity = idUniversity;
     this.universityNames = name;
-    console.log(idUniversity, 'aaaaaaaaaaaaasssssssss');
-    console.log(this.data, 'modals');
+    console.log('ID UNIVERSIDAD:', idUniversity);
+    console.log('data de la universidad', this.data);
     this.getCommentsUniversity();
     this.formComments = this.fb.group({
       usuario: ['', Validators.required],
@@ -62,7 +59,7 @@ export class SeeDetailsComponent implements OnInit {
       comentario: ['', Validators.required],
     });
   }
-  
+
   getUniversity(): void {
     this.universityService
       .getUniversity()
@@ -70,6 +67,7 @@ export class SeeDetailsComponent implements OnInit {
         this.information = res;
       });
   }
+  
   updateLikeStatus(comment: any): void {
     const newLikeStatus = !comment.like;
     this.universityService.darLike(comment.usuario, newLikeStatus).subscribe(
@@ -124,14 +122,14 @@ export class SeeDetailsComponent implements OnInit {
       .getcomments(this.filterIdUniversity)
       .subscribe((res: CommentsModel[]) => {
         this.datosRecibidos = res;
-        console.log(res, 'esto que tira');
+        /*console.log(res, 'esto que tira');*/
         res.forEach((res) => {
           this.universityNames = res.universityName;
           (this.like = res.like),
             (this.user = res.usuario),
             (this.idUniversity = res.idUniversity);
         });
-        console.log(res, 'datos');
+        console.log('comentarios filtrados por id', res);
         this.dataComments = res;
       });
   }
@@ -139,6 +137,4 @@ export class SeeDetailsComponent implements OnInit {
   recibirDatos(datos: any[]) {
     this.datosRecibidos = datos;
   }
-
-  
 }
