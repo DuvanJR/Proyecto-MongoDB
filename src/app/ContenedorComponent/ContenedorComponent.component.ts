@@ -63,12 +63,10 @@ export class ContenedorComponentComponent implements OnInit {
         const universityToUpdate = this.information.find(
           (u) => u.idUniversity === idUniversity
         );
-
         if (universityToUpdate) {
           // Actualiza directamente la propiedad visits
           universityToUpdate.visits = data.visits;
         }
-
         // Muestra el total de visitas en la consola
         console.log(`Visitas para ${idUniversity}: ${data.visits}`);
       },
