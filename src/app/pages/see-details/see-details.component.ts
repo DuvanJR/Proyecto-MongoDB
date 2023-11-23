@@ -67,7 +67,7 @@ export class SeeDetailsComponent implements OnInit {
         this.information = res;
       });
   }
-  
+
   updateLikeStatus(comment: any): void {
     const newLikeStatus = !comment.like;
     this.universityService.darLike(comment.usuario, newLikeStatus).subscribe(
@@ -113,10 +113,13 @@ export class SeeDetailsComponent implements OnInit {
     }
   }
 
+  //resetea el formulario cuando se manda
   resetForm() {
     this.formComments.reset();
   }
 
+  //asocia cada comentario al id de la universidad
+  //enseguida muestra el comentario sin actualziar la pagina
   getCommentsUniversity(): void {
     this.universityService
       .getcomments(this.filterIdUniversity)
