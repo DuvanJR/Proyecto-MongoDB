@@ -107,6 +107,8 @@ export class SeeDetailsComponent implements OnInit {
         .subscribe((res) => {
           console.log(res, 'hola');
           this.formComments.reset();
+           //asocia cada comentario al id de la universidad
+           //enseguida muestra el comentario sin actualziar la pagina
           this.getCommentsUniversity();
           this.snackbarService.openSnackBar('Comentario creado', 'Cerrar');
         });
@@ -118,8 +120,8 @@ export class SeeDetailsComponent implements OnInit {
     this.formComments.reset();
   }
 
+
   //asocia cada comentario al id de la universidad
-  //enseguida muestra el comentario sin actualziar la pagina
   getCommentsUniversity(): void {
     this.universityService
       .getcomments(this.filterIdUniversity)

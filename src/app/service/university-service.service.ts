@@ -17,6 +17,11 @@ export class UniversityServiceService {
     return this.http.get(url);
   }
 
+  getUniversityByCity(city: string): Observable<any> {
+    const url = `${this.apiLocal}/universitiesByCity/${city}`;
+    return this.http.get(url);
+  }
+
   //Conteo de las visitas por id de universidad
   getVisitsById(idUniversity: number): Observable<any> {
     const url = `${this.apiLocal}/universities/${idUniversity}/visits`;
@@ -40,4 +45,6 @@ export class UniversityServiceService {
     const url = `${this.apiLocal}/comments/${usuario}/${like}`;
     return this.http.post(url, {});
   }
+
+
 }

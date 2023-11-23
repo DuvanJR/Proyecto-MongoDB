@@ -32,10 +32,10 @@ export class ContenedorComponentComponent implements OnInit {
   filtrar(city: string) {
     this.city = [city];
     this.information = this.copyInformation;
-    const result = this.information.filter((universidades) =>
-      universidades.city.includes(city)
-    );
-    this.information = result;
+    this.universityService.getUniversityByCity(city).subscribe((data) => {
+      this.information = data;
+    })
+    
   }
 
   getUniversity(): void {
