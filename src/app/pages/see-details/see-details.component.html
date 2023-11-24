@@ -3,6 +3,8 @@
     <span class="material-symbols-outlined" (click)="back()"> cancel </span>
   </div>
 
+  <app-loader [loading]="loading" />
+
   <div class="main-details" *ngFor="let item of dataReciber">
     <div class="container-title">
       <p>{{ item.name | uppercase }}</p>
@@ -28,18 +30,12 @@
 
         <mat-form-field appearance="fill" class="fillInput">
           <mat-label>Usuario</mat-label>
-          <input
-            formControlName="usuario"
-            matInput
-            placeholder="Escriba un usuario..."
-            value="usuario"
-          />
-          <div
-            *ngIf="
+          <input formControlName="usuario" matInput placeholder="Escriba un usuario..." value="usuario"
+            autocomplete="off" />
+          <div *ngIf="
               formComments.get('usuario')?.hasError('required') &&
               formComments.get('usuario')?.touched
-            "
-          >
+            ">
             <p style="color: rgb(255, 255, 255)">
               El comentario es obligatorio.
             </p>
@@ -48,18 +44,12 @@
 
         <mat-form-field appearance="fill" class="fillInput">
           <mat-label> Comentario</mat-label>
-          <textarea
-            formControlName="comentario"
-            matInput
-            placeholder="Escriba un comentario..."
-            value="comentario"
-          ></textarea>
-          <div
-            *ngIf="
+          <textarea formControlName="comentario" matInput placeholder="Escriba un comentario..." value="comentario"
+            autocomplete="off"></textarea>
+          <div *ngIf="
               formComments.get('comentario')?.hasError('required') &&
               formComments.get('comentario')?.touched
-            "
-          >
+            ">
             <p style="color: rgb(255, 255, 255)">
               El comentario es obligatorio.
             </p>
@@ -67,10 +57,11 @@
         </mat-form-field>
 
         <!-- Botón de envío -->
-        <button type="submit" mat-flat-button color="accent" [disabled]="!formComments.valid">Enviar</button>
+        <button type="submit" mat-flat-button color="accent" [disabled]="!formComments.valid">
+          Enviar
+        </button>
       </form>
     </div>
-
 
     <!-- Caja de comentarios -->
     <h1 class="title-comments">COMENTARIOS</h1>
@@ -78,20 +69,23 @@
       <article class="comment">
         <div class="comment-body" *ngFor="let dataComments of dataComments">
           <div class="text">
-            <p class="usuarioData">Usuario: {{ dataComments.usuario }}</p>
-            <p>Comentario: {{ dataComments.comentario }}</p>
+            <p class="usuarioData">
+              <strong class="user-comment">Usuario:</strong>
+              {{ dataComments.usuario }}
+            </p>
+            <p>
+              <strong class="user-comment-c">Comentario:</strong>
+              {{ dataComments.comentario }}
+            </p>
             <p class="attribution letra">
-              Fecha: {{ dataComments.fecha | date : "shortDate" }}
+              <strong>Fecha:</strong>
+              {{ dataComments.fecha | date : "shortDate" }}
             </p>
           </div>
 
           <div class="container-button">
             <button mat-icon-button (click)="updateLikeStatus(dataComments)">
-              <mat-icon
-                *ngIf="dataComments.like; else dislikeIcon"
-                class="estadoLike"
-                >thumb_up</mat-icon
-              >
+              <mat-icon *ngIf="dataComments.like; else dislikeIcon" class="estadoLike">thumb_up</mat-icon>
               <ng-template #dislikeIcon>
                 <mat-icon class="estadoDislike">thumb_down</mat-icon>
               </ng-template>

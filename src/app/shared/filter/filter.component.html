@@ -1,14 +1,18 @@
-<div class="container">
+<div>
+  <app-loader [loading]="loading" />
+
+  <div class="container">
     <button class="btn-filtrar" (click)="seeFilter()">
-        <span>Filtrar</span>
+      <span>Filtrar</span>
     </button>
 
     <ng-container *ngIf="filter">
-        <div class="container-buttons">
-            <button (click)="mostrarTodo()">Todos</button>
-            <div *ngFor="let informacion of city">
-                <button (click)="filterByCity(informacion)"> {{informacion}} </button>
-            </div>
+      <div class="container-buttons">
+        <button (click)="mostrarTodo()">Todos</button>
+        <div *ngFor="let informacion of city">
+          <button (click)="filterByCity(informacion)">{{ informacion }}</button>
         </div>
+      </div>
     </ng-container>
+  </div>
 </div>

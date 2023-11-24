@@ -1,5 +1,5 @@
 import { UniversityModel } from './../../models/university';
-import { Component, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit, Output, Renderer2 } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UniversityServiceService } from 'src/app/service/university-service.service';
@@ -29,13 +29,15 @@ export class SeeDetailsComponent implements OnInit {
   public filterIdUniversity: any;
   public messageModal: string = 'Creado exitosamente';
   public buttonModal: string = 'Undo';
+  public loading: boolean = false;
+
   constructor(
     private router: Router,
     private universityService: UniversityServiceService,
     public dialogRef: MatDialogRef<SeeDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UniversityModel[],
     private fb: FormBuilder,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
   ) {}
 
   back() {
@@ -92,6 +94,9 @@ export class SeeDetailsComponent implements OnInit {
 
   onSubmit() {
     if (this.formComments.valid) {
+      // Activar el loader
+      this.loading = true;
+
       this.formComments.patchValue({
         usuario: this.formComments.get('usuario')?.value,
         like: this.like,
@@ -102,16 +107,25 @@ export class SeeDetailsComponent implements OnInit {
       });
       const formData = this.formComments.value;
       console.log('Datos enviados:', formData);
-      this.universityService
-        .postComments(this.formComments.value)
-        .subscribe((res) => {
-          console.log(res, 'hola');
+
+      this.universityService.postComments(this.formComments.value).subscribe(
+        (res) => {
+          // Desactivar el loader después de que la operación se haya completado
+          this.loading = false;
+
+          console.log(res, 'modal');
           this.formComments.reset();
-           //asocia cada comentario al id de la universidad
-           //enseguida muestra el comentario sin actualziar la pagina
+          // Asocia cada comentario al id de la universidad
+          // Enseguida muestra el comentario sin actualizar la página
           this.getCommentsUniversity();
           this.snackbarService.openSnackBar('Comentario creado', 'Cerrar');
-        });
+        },
+        (error) => {
+          // En caso de error, desactivar el loader
+          this.loading = false;
+          console.error('Error al enviar el comentario', error);
+        }
+      );
     }
   }
 
@@ -119,7 +133,6 @@ export class SeeDetailsComponent implements OnInit {
   resetForm() {
     this.formComments.reset();
   }
-
 
   //asocia cada comentario al id de la universidad
   getCommentsUniversity(): void {

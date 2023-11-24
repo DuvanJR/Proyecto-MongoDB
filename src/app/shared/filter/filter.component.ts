@@ -12,6 +12,7 @@ export class FilterComponent implements OnInit {
   public city: string[] = [];
   constructor(private universityService: UniversityServiceService) {}
   filter: boolean = false;
+  public loading: boolean = false;
   @Output() result = new EventEmitter();
   @Output() todosCiudad = new EventEmitter();
 
@@ -20,19 +21,27 @@ export class FilterComponent implements OnInit {
   }
 
   getUniversity(): void {
-    this.universityService.getUniversity().subscribe((res: UniversityModel[]) => {
-      this.information = res;
-      console.log(res);
-      res.forEach((res) => {
-        this.city.push(res.city)
-      });
-      let misCiudades: string[] = this.city;
-      let ciudadesSinDuplicados: string[] = [...new Set(misCiudades)];
-
-      this.city = ciudadesSinDuplicados;
-      
-    });
+    // Activar el loader
+    this.loading = true;
+  
+    this.universityService.getUniversity().subscribe(
+      (res: UniversityModel[]) => {
+        // Desactivar el loader y actualizar la información
+        this.loading = false;
+        this.information = res;
+        console.log(res);
+  
+        // Lógica adicional para obtener ciudades sin duplicados
+        this.city = [...new Set(res.map(item => item.city))];
+      },
+      (error) => {
+        // En caso de error, desactivar el loader
+        this.loading = false;
+        console.error('Error al obtener la información de la universidad', error);
+      }
+    );
   }
+  
 
   filterByCity(city: string) {
     this.result.emit(city);

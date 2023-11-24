@@ -1,31 +1,33 @@
-<div class="btn-nav">
-  <app-filter (todosCiudad)="getUniversity()" (result)="filtrar($event)" />
-</div>
-
-
-<div class="main">
-  <mat-card class="example-card color" *ngFor="let item of information">
-    <mat-card-header>
-      <mat-card-title>
-        <span class="title">{{item.name}}</span>
-      </mat-card-title>
-    </mat-card-header>
-    <div class="example-header-image">
-      <img mat-card-image [src]="item.img" alt="{{item.name}}" width="370"
-      height="230" >
-    </div>
-    <mat-card-content class="container-text">
-
-      <p class="contenido">
-       <strong>CIUDAD:</strong> {{item.city}}
-      </p>
-      <p class="contenido">
-        <strong>VISITAS:</strong> {{item.visits}}
-       </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="openDialog(item.name)" (click)="getVisits(item.idUniversity)" class="comment">Ver más</button>
-    </mat-card-actions>
-  </mat-card>
-
+<app-loader [loading]="loading" />
+<div>
+  <div class="btn-nav">
+    <app-filter (todosCiudad)="getUniversity()" (result)="filtrar($event)" />
+  </div>
+  
+  <div class="main">
+    <mat-card class="example-card color" *ngFor="let item of information">
+      <mat-card-header>
+        <mat-card-title>
+          <span class="title">{{ item.name }}</span>
+        </mat-card-title>
+      </mat-card-header>
+      <div class="example-header-image">
+        <img mat-card-image [src]="item.img" alt="{{ item.name }}" width="370"
+          height="230" />
+      </div>
+      <mat-card-content class="container-text">
+        <p class="contenido"><strong>CIUDAD:</strong> {{ item.city }}</p>
+        <p class="contenido-visit">
+          <span class="material-symbols-outlined"> visibility </span><strong>visitas</strong>
+          {{ item.visits }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="">
+        <button mat-button (click)="openDialog(item.name)"
+          (click)="getVisits(item.idUniversity)" class="comment mdc-button__label">
+          Ver más
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

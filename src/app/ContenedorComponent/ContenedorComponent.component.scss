@@ -24,6 +24,15 @@
   color: white;
 }
 
+.contenido-visit {
+  color: white;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .title {
   color: white;
 }
@@ -62,4 +71,9 @@
   display: flex;
   gap: 20px;
   flex-direction: column;
+}
+
+.mdc-button__label{
+  font-size: 20px;
+  letter-spacing: -1px;
 }

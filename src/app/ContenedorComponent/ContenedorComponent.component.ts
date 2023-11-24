@@ -18,7 +18,9 @@ export class ContenedorComponentComponent implements OnInit {
   public copyInformation: any[] = [];
   public city: string[] = [];
   public visits!: number;
+  public loading: boolean = false;
   @Output() datosFiltrados = new EventEmitter<any[]>();
+
   constructor(
     private router: Router,
     private universityService: UniversityServiceService,
@@ -30,30 +32,54 @@ export class ContenedorComponentComponent implements OnInit {
   }
 
   filtrar(city: string) {
-    this.city = [city];
-    this.information = this.copyInformation;
-    this.universityService.getUniversityByCity(city).subscribe((data) => {
-      this.information = data;
-    })
-    
+    // Guardar la información original
+    this.copyInformation = this.information;
+
+    // Activar el loader
+    this.loading = true;
+
+    // Filtrar la información por ciudad
+    this.information = [];
+    this.universityService.getUniversityByCity(city).subscribe(
+      (data) => {
+        // Desactivar el loader y actualizar la información
+        this.loading = false;
+        this.information = data;
+      },
+      (error) => {
+        // En caso de error, restaurar la información original y desactivar el loader
+        this.loading = false;
+        this.information = this.copyInformation;
+        console.error('Error al filtrar por ciudad', error);
+      }
+    );
   }
 
   getUniversity(): void {
-    this.universityService
-      .getUniversity()
-      .subscribe((res: UniversityModel[]) => {
+    // Activar el loader
+    this.loading = true;
+  
+    this.universityService.getUniversity().subscribe(
+      (res: UniversityModel[]) => {
+        // Desactivar el loader y actualizar la información
+        this.loading = false;
         this.information = res;
         this.copyInformation = res;
         console.log(res);
-        res.forEach((res) => {
-          this.city.push(res.city);
-        });
-        let misCiudades: string[] = this.city;
-        let ciudadesSinDuplicados: string[] = [...new Set(misCiudades)];
-        this.city = ciudadesSinDuplicados;
-        console.log('ciudades', ciudadesSinDuplicados);
-      });
+  
+        // Lógica adicional para obtener ciudades sin duplicados
+        this.city = [...new Set(res.map(item => item.city))];
+        console.log('ciudades', this.city);
+      },
+      (error) => {
+        // En caso de error, restaurar la información original y desactivar el loader
+        this.loading = false;
+        this.information = this.copyInformation;
+        console.error('Error al obtener la información de la universidad', error);
+      }
+    );
   }
+  
 
   getVisits(idUniversity: number): void {
     // Llamada al servicio para obtener el total de visitas

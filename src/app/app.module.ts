@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SeeDetailsComponent } from './pages/see-details/see-details.component';
 import { FilterComponent } from './shared/filter/filter.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 
 
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     SeeDetailsComponent,
     FilterComponent,
+    LoaderComponent
 
    ],
   imports: [
