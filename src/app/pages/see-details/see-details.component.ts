@@ -49,8 +49,6 @@ export class SeeDetailsComponent implements OnInit {
     const { idUniversity, name } = this.data[0];
     this.filterIdUniversity = idUniversity;
     this.universityNames = name;
-    console.log('ID UNIVERSIDAD:', idUniversity);
-    console.log('data de la universidad', this.data);
     this.getCommentsUniversity();
     this.formComments = this.fb.group({
       usuario: ['', Validators.required],
@@ -74,10 +72,7 @@ export class SeeDetailsComponent implements OnInit {
     const newLikeStatus = !comment.like;
     this.universityService.darLike(comment.usuario, newLikeStatus).subscribe(
       (data) => {
-        console.log(
-          `Estado de like actualizado para ${comment.usuario}:`,
-          data
-        );
+       
         // Actualiza el estado de like en el comentario
         comment.like = newLikeStatus;
         this.snackbarService.openSnackBar('Like actualizado', 'Cerrar');
@@ -106,14 +101,12 @@ export class SeeDetailsComponent implements OnInit {
         comentario: this.formComments.get('comentario')?.value,
       });
       const formData = this.formComments.value;
-      console.log('Datos enviados:', formData);
 
       this.universityService.postComments(this.formComments.value).subscribe(
         (res) => {
           // Desactivar el loader después de que la operación se haya completado
           this.loading = false;
 
-          console.log(res, 'modal');
           this.formComments.reset();
           // Asocia cada comentario al id de la universidad
           // Enseguida muestra el comentario sin actualizar la página
@@ -140,14 +133,12 @@ export class SeeDetailsComponent implements OnInit {
       .getcomments(this.filterIdUniversity)
       .subscribe((res: CommentsModel[]) => {
         this.datosRecibidos = res;
-        /*console.log(res, 'esto que tira');*/
         res.forEach((res) => {
           this.universityNames = res.universityName;
           (this.like = res.like),
             (this.user = res.usuario),
             (this.idUniversity = res.idUniversity);
         });
-        console.log('comentarios filtrados por id', res);
         this.dataComments = res;
       });
   }

@@ -65,11 +65,9 @@ export class ContenedorComponentComponent implements OnInit {
         this.loading = false;
         this.information = res;
         this.copyInformation = res;
-        console.log(res);
   
         // Lógica adicional para obtener ciudades sin duplicados
         this.city = [...new Set(res.map(item => item.city))];
-        console.log('ciudades', this.city);
       },
       (error) => {
         // En caso de error, restaurar la información original y desactivar el loader
@@ -94,7 +92,6 @@ export class ContenedorComponentComponent implements OnInit {
           universityToUpdate.visits = data.visits;
         }
         // Muestra el total de visitas en la consola
-        console.log(`Visitas para ${idUniversity}: ${data.visits}`);
       },
       error: (error) => {
         console.error(error);
@@ -107,7 +104,6 @@ export class ContenedorComponentComponent implements OnInit {
       (item) => item.name === name
     );
     this.datosFiltrados.emit(universityByName);
-    console.log(universityByName);
   }
 
   openDialog(name: string): void {
@@ -121,7 +117,6 @@ export class ContenedorComponentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
     });
   }
 }

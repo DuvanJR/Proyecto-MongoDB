@@ -29,7 +29,6 @@ export class FilterComponent implements OnInit {
         // Desactivar el loader y actualizar la información
         this.loading = false;
         this.information = res;
-        console.log(res);
   
         // Lógica adicional para obtener ciudades sin duplicados
         this.city = [...new Set(res.map(item => item.city))];
